@@ -4,65 +4,53 @@
              x:Class="MobileCalc.Forms.Views.AboutPage"
              xmlns:vm="clr-namespace:MobileCalc.Forms.ViewModels;"
              Title="{Binding Title}">
-  <ContentPage.BindingContext>
-    <vm:AboutViewModel />
-  </ContentPage.BindingContext>
-  <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto"/>
-      <RowDefinition Height="*"/>
-    </Grid.RowDefinitions>
-    <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-      <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-        <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
-          <Image Source="xamarin_logo.png" VerticalOptions="Center" HeightRequest="64"/>
-        </ContentView>
-      </StackLayout>
-    </StackLayout>
-    <ScrollView Grid.Row="1">
-      <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10">
-        <Label FontSize="22">
-          <Label.FormattedText>
-            <FormattedString>
-              <FormattedString.Spans>
-                <Span Text="MobileCalc.Forms" FontAttributes="Bold" FontSize="22"/>
-                <Span Text=" "/>
-                <Span Text="1.0" ForegroundColor="{StaticResource LightTextColor}"/>
-              </FormattedString.Spans>
-            </FormattedString>
-          </Label.FormattedText>
-        </Label>
-        <Label>
-          <Label.FormattedText>
-            <FormattedString>
-              <FormattedString.Spans>
-                <Span Text="This app is written in C# and native APIs using the" />
-                <Span Text=" "/>
-                <Span Text="Xamarin Platform" FontAttributes="Bold" />
-                <Span Text="." />
-              </FormattedString.Spans>
-            </FormattedString>
-          </Label.FormattedText>
-        </Label>
-        <Label>
-          <Label.FormattedText>
-            <FormattedString>
-              <FormattedString.Spans>
-                <Span Text="It shares code with its" />
-                <Span Text=" "/>
-                <Span Text="iOS, Android, and Windows" FontAttributes="Bold" />
-                <Span Text=" "/>
-                <Span Text="versions." />
-              </FormattedString.Spans>
-            </FormattedString>
-          </Label.FormattedText>
-        </Label>
-        <Button Margin="0,10,0,0"
-                Text="Learn more" 
-                Command="{Binding OpenWebCommand}"
-                BackgroundColor="{StaticResource Primary}"
-                TextColor="White"/>
-      </StackLayout>
-    </ScrollView>
-  </Grid>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button" x:Key="CalcButton">
+                <Setter Property="BackgroundColor" Value="{StaticResource Primary}"></Setter>
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.BindingContext>
+        <vm:AboutViewModel />
+    </ContentPage.BindingContext>
+    <Grid>
+        <ScrollView>
+            <StackLayout Orientation="Vertical">
+                <Label FontSize="20" HorizontalTextAlignment="End" HorizontalOptions="EndAndExpand" Text="{Binding Display}" />
+                <StackLayout Orientation="Horizontal">
+                    <Button Style="{StaticResource CalcButton}" Text="CE" HorizontalOptions="FillAndExpand" />
+                    <Button Style="{StaticResource CalcButton}" Text="C" HorizontalOptions="FillAndExpand" />
+                    <Button Style="{StaticResource CalcButton}" Text="&lt;-" HorizontalOptions="FillAndExpand" />
+                    <Button Style="{StaticResource CalcButton}" Text="%" HorizontalOptions="FillAndExpand" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Button Style="{StaticResource CalcButton}" Command="{Binding OnNumberClickCommand}" CommandParameter="7" Text="7" HorizontalOptions="FillAndExpand" />
+                    <Button Style="{StaticResource CalcButton}" Command="{Binding OnNumberClickCommand}" CommandParameter="8" Text="8" HorizontalOptions="FillAndExpand" />
+                    <Button Style="{StaticResource CalcButton}" Command="{Binding OnNumberClickCommand}" CommandParameter="9" Text="9" HorizontalOptions="FillAndExpand" />
+                    <Button Style="{StaticResource CalcButton}" Text="X" HorizontalOptions="FillAndExpand" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Button Style="{StaticResource CalcButton}" Command="{Binding OnNumberClickCommand}" CommandParameter="4" Text="4" HorizontalOptions="FillAndExpand" />
+                    <Button Style="{StaticResource CalcButton}" Command="{Binding OnNumberClickCommand}" CommandParameter="5" Text="5" HorizontalOptions="FillAndExpand" />
+                    <Button Style="{StaticResource CalcButton}" Command="{Binding OnNumberClickCommand}" CommandParameter="6" Text="6" HorizontalOptions="FillAndExpand" />
+                    <Button Style="{StaticResource CalcButton}" Text="-" HorizontalOptions="FillAndExpand" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Button Style="{StaticResource CalcButton}" Command="{Binding OnNumberClickCommand}" CommandParameter="1" Text="1" HorizontalOptions="FillAndExpand" />
+                    <Button Style="{StaticResource CalcButton}" Command="{Binding OnNumberClickCommand}" CommandParameter="2" Text="2" HorizontalOptions="FillAndExpand" />
+                    <Button Style="{StaticResource CalcButton}" Command="{Binding OnNumberClickCommand}" CommandParameter="3" Text="3" HorizontalOptions="FillAndExpand" />
+                    <Button Style="{StaticResource CalcButton}" Text="+" HorizontalOptions="FillAndExpand" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Button Style="{StaticResource CalcButton}" Text="+=" HorizontalOptions="FillAndExpand" />
+                    <Button Style="{StaticResource CalcButton}" Text="0" HorizontalOptions="FillAndExpand" />
+                    <Button Style="{StaticResource CalcButton}" Text="." HorizontalOptions="FillAndExpand" />
+                    <Button Style="{StaticResource CalcButton}" Text="=" HorizontalOptions="FillAndExpand" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

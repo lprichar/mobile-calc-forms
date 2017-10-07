@@ -6,16 +6,31 @@ namespace MobileCalc.Forms.ViewModels
 {
     public class AboutViewModel : BaseViewModel
     {
-        public AboutViewModel()
-        {
-            Title = "About";
+        private string _display;
 
-            OpenWebCommand = new Command(() => Device.OpenUri(new Uri("https://xamarin.com/platform")));
+        public string Display
+        {
+            get { return _display; }
+            set
+            {
+                _display = value;
+                OnPropertyChanged();
+            }
         }
 
-        /// <summary>
-        /// Command to open browser to xamarin.com
-        /// </summary>
-        public ICommand OpenWebCommand { get; }
+        public AboutViewModel()
+        {
+            Title = "Standard";
+
+            Display = "0";
+            OnNumberClickCommand = new Command<string>(OnNumberClick);
+        }
+
+        public ICommand OnNumberClickCommand { get; }
+
+        private void OnNumberClick(string num)
+        {
+            Display = Display + num;
+        }
     }
 }
